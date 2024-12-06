@@ -4,5 +4,5 @@ class Solution:
         arr = []
         for i in range(n):
             freq, val = nums[2*i], nums[2*i + 1]
-            arr.extend([val]*freq)
+            arr += [val]*freq
         return arr
