@@ -5,6 +5,6 @@ class Solution:
         for i in range(len(arr)-1, -1, -1):
             temp = arr[i]
             arr[i] = Max
-            Max = max(temp, Max)
+            Max = temp if temp > Max else Max
         
         return arr
