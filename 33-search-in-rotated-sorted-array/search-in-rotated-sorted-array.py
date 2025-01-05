@@ -1,13 +1,21 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        def findVal(low, high):
-            if len(nums[low:high]) == 1:
-                if nums[low:high][0] == target:
-                    return low
-                return -1
+        low = 0
+        high = len(nums) - 1
+        while low <= high:
+            mid = low + (high - low)//2
+
+            if nums[mid] == target:
+                return mid
+            
+            elif nums[low] <= nums[mid]:
+                if nums[low] <= target and target < nums[mid]:
+                    high = mid -1
+                else:
+                    low = mid + 1
             else:
-                mid = (high + low) // 2
-                l = findVal(low, mid)
-                r = findVal(mid, high)
-                return l if l > r else r
-        return findVal(0, len(nums))
+                if nums[mid] < target and target <= nums[high]:
+                    low = mid + 1
+                else:
+                    high = mid - 1
+        return -1
