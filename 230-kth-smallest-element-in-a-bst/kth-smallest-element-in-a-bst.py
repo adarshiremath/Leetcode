@@ -4,14 +4,15 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from sortedcontainers import SortedList
 class Solution:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        sorted_list = SortedList()
+        arr = []
+
         def inorder(root):
-            if root:
-                inorder(root.left)
-                sorted_list.add(root.val)
-                inorder(root.right)
+            if not root:
+                return
+            inorder(root.left)
+            arr.append(root.val)
+            inorder(root.right)
         inorder(root)
-        return sorted_list[k-1]
+        return arr[k-1]
