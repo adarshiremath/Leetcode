@@ -1,11 +1,18 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        def minVal(nums):
-            if len(nums) == 1:
-                return nums[0]
+        l = 0
+        r = len(nums) - 1
+        res = nums[l]
+
+        while l <= r:
+            if nums[l] < nums[r]:
+                res = min(res, nums[l])
+                break
+            
+            m = (l + r)//2
+            res = min(res, nums[m])
+            if nums[m] >= nums[l]:
+                l = m + 1
             else:
-                length = len(nums)
-                l = minVal(nums[:length//2])
-                r = minVal(nums[length//2:])
-                return l if l < r else r
-        return minVal(nums)
+                r = m - 1
+        return res
