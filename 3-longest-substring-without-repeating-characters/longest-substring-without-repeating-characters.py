@@ -3,6 +3,7 @@ class Solution:
         dit = {}
         l = 0
         res = 0
+
         for r in range(len(s)):
             if s[r] in dit:
                 l = max(dit[s[r]]+1, l)
