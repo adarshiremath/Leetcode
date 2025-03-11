@@ -17,12 +17,11 @@ class Solution:
                 ans = []
                 for _ in range(len(q)):
                     node = q.popleft()
-                    if node != None:
-                        ans.append(node.val)
-                        if node.left != None:
-                            q.append(node.left)
-                        if node.right != None:
-                            q.append(node.right)
+                    ans.append(node.val)
+                    if node.left != None:
+                        q.append(node.left)
+                    if node.right != None:
+                        q.append(node.right)
                 res.append(ans)
         
         bfs(root)
