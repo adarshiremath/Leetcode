@@ -1,17 +1,17 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        def sum_sq(n):
-            output = 0
-            while n:
-                temp = n % 10
-                output += temp ** 2
-                n = n // 10
-            return output
+        def get_digit_sq(digits: str):
+            sum_sq = 0
+            for digit in digits:
+                digit = int(digit)
+                sum_sq += (digit)**2
+            return sum_sq
         
-        slow, fast = n, sum_sq(n)
+        seen = set()
 
-        while slow != fast:
-            fast = sum_sq(fast)
-            fast = sum_sq(fast)
-            slow = sum_sq(slow)
-        return True if fast == 1 else False
+        while n not in seen:
+            seen.add(n)
+            if n == 1:
+                return True
+            n = get_digit_sq(str(n))
+        return False
