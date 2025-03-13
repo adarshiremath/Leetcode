@@ -2,11 +2,12 @@ class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         dit = {}
         l = 0
-        res = 0
+        max_ = 0
 
-        for r in range(len(s)):
+        for r in range(0, len(s)):
             if s[r] in dit:
-                l = max(dit[s[r]]+1, l)
+                l = max(l, dit[s[r]]+1)
             dit[s[r]] = r
-            res = max(res, r - l + 1)
-        return res
+            max_ = max(max_, r - l + 1)
+        
+        return max_
