@@ -1,20 +1,20 @@
 class Solution:
     def repairCars(self, ranks: List[int], cars: int) -> int:
-        min_ , max_ = 0, max(ranks) * (cars**2)
-        ans = max_
+        def is_possible(time):
+            total_cars = 0
+            for r in ranks:
+                total_cars += int((time // r) ** 0.5)
+            return total_cars >= cars
 
-        while  min_ <= max_:
-            mid = (min_ + max_) // 2
-            index = 0
-            count = 0
-            while index < len(ranks): 
-                count += int((mid// ranks[index]) ** 0.5)
-                index += 1
-            
-            if count >= cars:
-                ans = mid
-                max_ = mid - 1 
+        left, right = 1, max(ranks) * cars * cars
+        answer = right
+
+        while left <= right:
+            mid = (left + right) // 2
+            if is_possible(mid):
+                answer = mid
+                right = mid - 1
             else:
-                min_ = mid + 1
-        
-        return ans
+                left = mid + 1
+
+        return answer
